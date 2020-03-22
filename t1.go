@@ -13,4 +13,3 @@ func main() {
 	test1(s1)
 	test1(s2)
 }
-

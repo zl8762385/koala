@@ -15,30 +15,36 @@ func middloger() koala.HandlerFunc {
 	}
 }
 
+func xiaoliangFunc(ctx *koala.Context) {
+	ctx.Text("profile.xiaoliang1")
+}
 
 func main() {
-	app := koala.New()
 
 	/*
-	app.Use(middloger())
+		app.Use(middloger())
 
-	app.Use(func(ctx *koala.Context) {
-		fmt.Println("自定义中间件")
-	})
+		app.Use(func(ctx *koala.Context) {
+			fmt.Println("自定义中间件")
+		})
 
-	app.Use(func(ctx *koala.Context) {
-		fmt.Println("自定义中间件111")
-	})
+		app.Use(func(ctx *koala.Context) {
+			fmt.Println("自定义中间件111")
+		})
 	*/
 
+	app := koala.New()
+	app.Add("GET", "/profile/xiaoliang", func(ctx *koala.Context) {
+		ctx.Text("profile.xiaoliang")
+	})
 
-
+	app.Add("GET", "/profile/xiaoliang1", xiaoliangFunc)
 
 	app.Add("GET", "/member/:id", func(ctx *koala.Context) {
 
 		type ss struct {
 			Name string `json:"name"`
-			Age int `json:"age"`
+			Age  int    `json:"age"`
 		}
 
 		test := ss{"xiaoliang", 32}
