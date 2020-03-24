@@ -10,11 +10,11 @@ import (
 
 func init() {
 	hystrix.ConfigureCommand("seckill", hystrix.CommandConfig{
-		Timeout: 1, // cmd的超时时间，一旦超时则返回失败
+		Timeout: 1, // cmd的超时时间，一旦超时则返回失败 超时时间设置  单位毫秒
 		MaxConcurrentRequests: 5, // 最大并发请求数
-		RequestVolumeThreshold: 3, // 熔断探测前的调用次数
-		SleepWindow: 1000, // 熔断发生后的等待恢复时间
-		ErrorPercentThreshold:10, // 失败占比
+		RequestVolumeThreshold: 3, // 熔断探测前的调用次数  错误率
+ 		SleepWindow: 1000, // 熔断发生后的等待恢复时间  过多长时间，熔断器再次检测是否开启。单位毫秒
+		ErrorPercentThreshold:10, // 请求阈值  熔断器是否打开首先要满足这个条件；这里的设置表示至少有5个请求才进行ErrorPercentThreshold错误百分比计算
 	})
 }
 
