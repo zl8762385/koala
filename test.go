@@ -6,11 +6,11 @@ import (
 )
 
 // 上下文中间件测试
-func middloger() koala.HandlerFunc {
+func middlewareLoger() koala.HandlerFunc {
 	return func(ctx *koala.Context) {
 
 		fmt.Printf("%+v", ctx.Req)
-		fmt.Println("middloger 中间件")
+		fmt.Println("middlewareLoger 中间件")
 		// fmt.Printf("%+V 进入到中间件了\n", ctx)
 	}
 }
@@ -34,6 +34,7 @@ func main() {
 	*/
 
 	app := koala.New()
+	app.Use(middlewareLoger())
 	app.Add("GET", "/profile/xiaoliang", func(ctx *koala.Context) {
 		ctx.Text("profile.xiaoliang")
 	})
